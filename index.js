@@ -73,9 +73,20 @@ Person.prototype.toString = function () {
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-function Car() {
-
+function Car(model,milesPerGallon) {
+  this.model = model;
+  this.milesPerGallon = milesPerGallon;
+  this.tank = 0;
+  this.odometer = 0;
 }
+
+Car.prototype.fill = function (gallons) {
+ 
+  {
+    this.tank += gallons;
+  }
+  
+};
 
 /*
   TASK 3
@@ -84,18 +95,29 @@ function Car() {
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby() {
-
+const Baby = function(name,age,favoriteToy) {
+  Person.call(this,name,age);
+  this.favoriteToy = favoriteToy;
 }
+
+Baby.prototype = Object.create(Person.prototype);
+Baby.prototype.play = function () {
+  return `Playing with ${this.favoriteToy}`;
+  
+};
 
 /* 
   TASK 4
 
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  1. for new Binding, When a function is invoked as a constructor function using the new keyword, 
+  this points to the new object that’s created: 
+  2. Implicit Binding: this points to the object on which the function is called (what’s to the left of 
+    the period when the function is called).
+  3. Explicit Binding: We can explicitly tell the JavaScript engine to set this to point to a 
+  certain value using call, apply or bind. Yhe object called will be put inside parentheses
+  4. Simple Function Call: this is the global object in non-strict mode, and undefined in strict mode.
+  Hence we have to understand the context of this
 */
 
 
